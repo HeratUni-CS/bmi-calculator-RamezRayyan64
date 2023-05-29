@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 ThemeData darkTheme() {
   return ThemeData.dark().copyWith(
-    primaryColor: Color(0xFF0A0E21),
-    accentColor: Color(0xFF0A0E21),
-    scaffoldBackgroundColor: Color(0xFF0A0E21),
+    scaffoldBackgroundColor: const Color(0xFF0A0E21),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+        primary: const Color(0xFF0A0E21), secondary: const Color(0xFF0A0E21)),
   );
 }

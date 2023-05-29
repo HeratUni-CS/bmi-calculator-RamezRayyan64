@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:bmi_starting/constants/constants.dart';
+import 'package:bmi_starting/widgets/select_gender_widget.dart';
 import 'package:flutter/material.dart';
 
 class InputScreen extends StatefulWidget {
@@ -14,6 +16,11 @@ class InputScreen extends StatefulWidget {
 enum Gender { male, female }
 
 class _InputScreenState extends State<InputScreen> {
+  Gender selectedGender = Gender.male;
+  int height = 175;
+  int weight = 60;
+  int age = 25;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +30,42 @@ class _InputScreenState extends State<InputScreen> {
       ),
       body: SafeArea(
           child: Column(
-        children: [],
+        children: [
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: SelectGenderWidget(
+                  color: selectedGender == Gender.male
+                      ? kActiveColor
+                      : kInActiveColor,
+                  icon: Icons.male_rounded,
+                  text: 'Male',
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: SelectGenderWidget(
+                  color: selectedGender == Gender.female
+                      ? kActiveColor
+                      : kInActiveColor,
+                  icon: Icons.female_rounded,
+                  text: 'Female',
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                ),
+              )
+            ],
+          ),
+        ],
       )),
     );
   }
