@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bmi_starting/constants/constants.dart';
 import 'package:bmi_starting/widgets/select_gender_widget.dart';
 import 'package:bmi_starting/widgets/set_height_widget.dart';
+import 'package:bmi_starting/widgets/set_weight_widget.dart';
 import 'package:flutter/material.dart';
 
 class InputScreen extends StatefulWidget {
@@ -74,6 +75,42 @@ class _InputScreenState extends State<InputScreen> {
                     height = newValue.round();
                   });
                 }),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: SetWeightWidget(
+                  counter: weight,
+                  text: 'WEIGHT',
+                  onPressedSubstract: () {
+                    setState(() {
+                      weight--;
+                    });
+                  },
+                  onPressedAdd: () {
+                    setState(() {
+                      weight++;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: SetWeightWidget(
+                  counter: age,
+                  text: 'AGE',
+                  onPressedSubstract: () {
+                    setState(() {
+                      age--;
+                    });
+                  },
+                  onPressedAdd: () {
+                    setState(() {
+                      age++;
+                    });
+                  },
+                ),
+              )
+            ],
           ),
         ],
       )),
