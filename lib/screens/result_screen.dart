@@ -1,3 +1,4 @@
+import 'package:bmi_starting/widgets/bottom_page_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -71,12 +72,18 @@ class _ResultScreenState extends State<ResultScreen> {
                         style: const TextStyle(fontSize: 25),
                         textAlign: TextAlign.center,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
           ),
+          BottomPageButtonWidget(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            text: 'RE-CALCULATE',
+          )
         ],
       ),
     );
