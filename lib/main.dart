@@ -1,4 +1,5 @@
 import 'package:bmi_starting/screens/input_screen.dart';
+import 'package:bmi_starting/screens/result_screen.dart';
 import 'package:bmi_starting/themes/darkTheme.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,10 @@ class BMICalculator extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: darkTheme(),
       initialRoute: InputScreen.id,
-      routes: {InputScreen.id: (context) => const InputScreen()},
+      routes: {
+        InputScreen.id: (context) => const InputScreen(),
+        ResultScreen.id: (context) => const ResultScreen()
+      },
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bmi_starting/constants/constants.dart';
+import 'package:bmi_starting/screens/result_screen.dart';
 import 'package:bmi_starting/widgets/bottom_page_button_widget.dart';
 import 'package:bmi_starting/widgets/select_gender_widget.dart';
 import 'package:bmi_starting/widgets/set_height_widget.dart';
@@ -116,6 +117,8 @@ class _InputScreenState extends State<InputScreen> {
             BottomPageButtonWidget(
               onTap: () {
                 double result = (weight / pow(height / 100, 2));
+                Navigator.pushNamed(context, ResultScreen.id,
+                    arguments: {'result': result});
               },
               text: 'CALCULATE',
             ),
