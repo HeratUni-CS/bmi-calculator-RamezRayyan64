@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bmi_starting/constants/constants.dart';
+import 'package:bmi_starting/widgets/bottom_page_button_widget.dart';
 import 'package:bmi_starting/widgets/select_gender_widget.dart';
 import 'package:bmi_starting/widgets/set_height_widget.dart';
 import 'package:bmi_starting/widgets/set_weight_widget.dart';
@@ -31,89 +32,96 @@ class _InputScreenState extends State<InputScreen> {
         centerTitle: true,
       ),
       body: SafeArea(
-          child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: SelectGenderWidget(
-                  color: selectedGender == Gender.male
-                      ? kActiveColor
-                      : kInActiveColor,
-                  icon: Icons.male_rounded,
-                  text: 'Male',
-                  onPress: () {
-                    setState(() {
-                      selectedGender = Gender.male;
-                    });
-                  },
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: SelectGenderWidget(
+                    color: selectedGender == Gender.male
+                        ? kActiveColor
+                        : kInActiveColor,
+                    icon: Icons.male_rounded,
+                    text: 'Male',
+                    onPress: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
+                  ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: SelectGenderWidget(
-                  color: selectedGender == Gender.female
-                      ? kActiveColor
-                      : kInActiveColor,
-                  icon: Icons.female_rounded,
-                  text: 'Female',
-                  onPress: () {
+                Expanded(
+                  flex: 1,
+                  child: SelectGenderWidget(
+                    color: selectedGender == Gender.female
+                        ? kActiveColor
+                        : kInActiveColor,
+                    icon: Icons.female_rounded,
+                    text: 'Female',
+                    onPress: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                  ),
+                )
+              ],
+            ),
+            Expanded(
+              child: SetHeigthWidget(
+                  height: height,
+                  onChangeSlider: (newValue) {
                     setState(() {
-                      selectedGender = Gender.female;
+                      height = newValue.round();
                     });
-                  },
+                  }),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: SetWeightWidget(
+                    counter: weight,
+                    text: 'WEIGHT',
+                    onPressedSubstract: () {
+                      setState(() {
+                        weight--;
+                      });
+                    },
+                    onPressedAdd: () {
+                      setState(() {
+                        weight++;
+                      });
+                    },
+                  ),
                 ),
-              )
-            ],
-          ),
-          Expanded(
-            child: SetHeigthWidget(
-                height: height,
-                onChangeSlider: (newValue) {
-                  setState(() {
-                    height = newValue.round();
-                  });
-                }),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: SetWeightWidget(
-                  counter: weight,
-                  text: 'WEIGHT',
-                  onPressedSubstract: () {
-                    setState(() {
-                      weight--;
-                    });
-                  },
-                  onPressedAdd: () {
-                    setState(() {
-                      weight++;
-                    });
-                  },
-                ),
-              ),
-              Expanded(
-                child: SetWeightWidget(
-                  counter: age,
-                  text: 'AGE',
-                  onPressedSubstract: () {
-                    setState(() {
-                      age--;
-                    });
-                  },
-                  onPressedAdd: () {
-                    setState(() {
-                      age++;
-                    });
-                  },
-                ),
-              )
-            ],
-          ),
-        ],
-      )),
+                Expanded(
+                  child: SetWeightWidget(
+                    counter: age,
+                    text: 'AGE',
+                    onPressedSubstract: () {
+                      setState(() {
+                        age--;
+                      });
+                    },
+                    onPressedAdd: () {
+                      setState(() {
+                        age++;
+                      });
+                    },
+                  ),
+                )
+              ],
+            ),
+            BottomPageButtonWidget(
+              onTap: () {
+                double result = (weight / pow(height / 100, 2));
+              },
+              text: 'CALCULATE',
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
