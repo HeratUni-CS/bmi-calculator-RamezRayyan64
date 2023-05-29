@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bmi_starting/constants/constants.dart';
 import 'package:bmi_starting/widgets/select_gender_widget.dart';
+import 'package:bmi_starting/widgets/set_height_widget.dart';
 import 'package:flutter/material.dart';
 
 class InputScreen extends StatefulWidget {
@@ -64,6 +65,15 @@ class _InputScreenState extends State<InputScreen> {
                 ),
               )
             ],
+          ),
+          Expanded(
+            child: SetHeigthWidget(
+                height: height,
+                onChangeSlider: (newValue) {
+                  setState(() {
+                    height = newValue.round();
+                  });
+                }),
           ),
         ],
       )),
